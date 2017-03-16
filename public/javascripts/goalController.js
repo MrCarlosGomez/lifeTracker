@@ -63,7 +63,7 @@ angular.module('goalController', [])
     var goalObject = {
       description: $scope.goalName,
       ok: 0,
-      ko: 0
+      ko: 0,
     };
     Goals.create(goalObject).success(function(data) {
       data.percentage = 0;
@@ -79,10 +79,12 @@ angular.module('goalController', [])
   };
   $scope.addOk = function(goal) {
     Goals.addOk(goal._id, $scope.day).success(function(data) {
+      goal.results=1;
     });
   };
   $scope.addKo = function(goal) {
     Goals.addKo(goal._id, $scope.day).success(function(data) {
+      goal.result=-1;
     });
   };
 });
